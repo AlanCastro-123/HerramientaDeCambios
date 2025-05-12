@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Herramienta de validación de cambios</title>
+
+    <!-- Bootstrap CSS local -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+</head>
+
+<body>
+    <div class="container mt-3">
+        <div class="card shadow-lg rounded-4">
+            <div class="card-body p-5">
+                <div class="d-flex align-items-center justify-content-between mb-4">
+                    <div>
+                      <h2 class="mb-1 text-primary">Formulario de Herramienta de validación de cambios</h2>
+                      <h3 class="mb-0 text-primary">Datos Generales</h3>
+                    </div>
+                    <img src="img/eglobal.png" alt="Logo" class="img-fluid" style="height: 60px;">
+                  </div>
+
+                    <form id="miFormulario">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="ambienteVal" class="form-label">Ambiente validado <span class="text-danger">*</span></label>
+                                <select id="ambienteVal" name="Ambiente" class="form-select" required>
+                                    <option value="" selected disabled>-- Selecciona un ambiente --</option>
+                                    <option>POS</option>
+                                    <option>ATM</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6" id="grupo-subcategoria" style="display: none;">
+                                <label for="siloVal" class="form-label">Silo(s) validado(s)</label>
+                                <select id="siloVal" name="Silo(s)" class="form-select">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="row fila-hora" style="display: none;">
+                            <div class="col-md-4">
+                                <label for="tiempoVal" class="form-label">Tiempo validación</label>
+                                <input type="text" class="form-control" id="tiempoVal" name="Tiempo de validación" disabled>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="horaInicio" class="form-label">Hora inicio</label>
+                                <input type="time" class="form-control" id="horaInicio" name="Hora Inicio">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="horaFin" class="form-label">Hora fin</label>
+                                <input type="time" class="form-control" id="horaFin" name="Hora Fin" disabled>
+                            </div>
+                        </div>
+
+                        <div class="row fila-hora" style="display: none;">
+                            <div class="col-md-4">
+                                <label for="tipoVal" class="form-label">Tipo de validación <span class="text-danger">*</span></label>
+                                <select id="tipoVal" name="Tipo de validación" class="form-select" required>
+                                    <option value="" selected disabled>-- Selecciona un tipo de validación --</option>
+                                    <option>General</option>
+                                    <option>Específico</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="adquirenteVal" class="form-label">Adquirente(s) <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="adquirenteVal" name="Archivos adquirente" disabled value="General">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="emisorVal" class="form-label">Emisor(es)</label>
+                                <input type="text" class="form-control" id="emisorVal" name="Archivos emisor" disabled value="General">
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="mb-0 text-primary fila-hora p-1" style="display: none;">Datos Específicos</h3>
+                        </div>
+                        <div id="detalleForm" class="row fila-hora" style="display:none; max-height: 200px; overflow-y: auto; border: 1px solid #ccc; border-radius: 8px; padding: 15px;">
+                            <!-- Aquí se agregarán los detalles dinámicamente -->
+                        </div>
+
+                        <div>
+                            <h3 class="mb-0 text-primary fila-hora p-1" style="display: none;">Pasos a seguir</h3>
+                        </div>
+                        <div class="row fila-hora" style="display:none; max-height: 300px; overflow-y: auto; border: 1px solid #ccc; border-radius: 8px; padding: 15px;">
+                            <textarea id="conclusion"  name="conclusion" class="form-control" style="resize: none;" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mt-3">Generar reporte</button>
+                    </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- jQuery y Bootstrap JS local -->
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="js/codigo.js"></script>
+</body>
+
+</html>
