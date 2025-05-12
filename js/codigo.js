@@ -197,7 +197,7 @@ $(document).ready(function () {
             const datos = $(this).serialize();
             console.log(datos)
             $('#tiempoVal, #horaFin, #adquirenteVal, #emisorVal').prop('disabled', true);
-            window.location.href = 'prueba.html?' + datos;
+            window.location.href = 'reporte.html?' + datos;
         });
     });
 });
