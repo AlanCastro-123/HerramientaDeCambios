@@ -167,14 +167,14 @@ $(document).ready(function () {
             const opcionesEMI = opcionesEspecificasEMI[categoriaSeleccionada];
             if (opcionesADQ && opcionesEMI) {
                 // Construir el select con las opciones
-                let selectHTML = `<select multiple size=4 id="adquirenteVal" name="Archivos adquirente" class="form-control" required>`;
+                let selectHTML = `<select multiple size=4 id="adquirenteVal" class="form-control" required>`;
                 selectHTML += `<option value="" disabled>-- Selecciona una opción --</option>`;
                 opcionesADQ.forEach(function (op) {
                     selectHTML += `<option value="${op}">${op}</option>`;
                 });
                 selectHTML += `</select>`;
                 $('#adquirenteVal').replaceWith(selectHTML);
-                selectHTML = `<select multiple size=4 id="emisorVal" name="Archivos emisor" class="form-control" required>`;
+                selectHTML = `<select multiple size=4 id="emisorVal" class="form-control" required>`;
                 selectHTML += `<option value="" disabled>-- Selecciona una opción --</option>`;
                 opcionesEMI.forEach(function (op) {
                     selectHTML += `<option value="${op}">${op}</option>`;
@@ -184,20 +184,30 @@ $(document).ready(function () {
             }
         } else {
             $('#adquirenteVal').replaceWith(`
-                    <input type="text" id="adquirenteVal" name="Archivos adquirente" class="form-control" value="General" disabled>
+                    <input type="text" id="adquirenteVal" name="Archivo(s) adquirente" class="form-control" value="General" disabled>
                 `);
             $('#emisorVal').replaceWith(`
-                    <input type="text" id="emisorVal" name="Archivos emisor" class="form-control" value="General" disabled>
+                    <input type="text" id="emisorVal" name="Archivo(s) emisor" class="form-control" value="General" disabled>
                 `);
         }
 
         $('#miFormulario').on('submit', function (e) {
             e.preventDefault(); // Evita envío normal
             $('#tiempoVal, #horaFin, #adquirenteVal, #emisorVal').prop('disabled', false);
-            const datos = $(this).serialize();
-            console.log(datos)
+            datos = $(this).serialize();
+            if ($("#adquirenteVal, #emisorVal").is('select')) {
+                var valores = $('#adquirenteVal').val();
+                var archivosAdquirente = "Archivo(s) adquirente=" + (valores ? valores.join(',') : "");
+                var valores = $('#emisorVal').val();
+                var archivosEmisor = "Archivo(s) emisor=" + (valores ? valores.join(',') : "");
+                datos += "&" + archivosAdquirente + "&" + archivosEmisor;
+                
+            }
+            
             $('#tiempoVal, #horaFin, #adquirenteVal, #emisorVal').prop('disabled', true);
+            console.log(datos)
             window.location.href = 'reporte.html?' + datos;
+            
         });
     });
 });

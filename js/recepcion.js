@@ -1,7 +1,7 @@
 $(document).ready(function () {
     const params = new URLSearchParams(window.location.search);
 
-    const camposGenerales = ['Ambiente', 'Silo(s)', 'Tiempo de validación', 'Hora Inicio', 'Hora Fin', 'Tipo de validación', 'Archivos adquirente', 'Archivos emisor'];
+    const camposGenerales = ['Ambiente', 'Silo(s)', 'Tiempo de validación', 'Hora Inicio', 'Hora Fin', 'Tipo de validación', 'Archivo(s) adquirente', 'Archivo(s) emisor'];
     const camposEspecificos = [
       'Porcentaje de ON2 DESC',
       'Porcentaje de ON2 por BIN',
