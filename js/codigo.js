@@ -197,9 +197,9 @@ $(document).ready(function () {
             datos = $(this).serialize();
             if ($("#adquirenteVal, #emisorVal").is('select')) {
                 var valores = $('#adquirenteVal').val();
-                var archivosAdquirente = "Archivo(s) adquirente=" + (valores ? valores.join(',') : "");
+                var archivosAdquirente = "Archivo(s) adquirente=" + (valores ? valores.join(', ') : "");
                 var valores = $('#emisorVal').val();
-                var archivosEmisor = "Archivo(s) emisor=" + (valores ? valores.join(',') : "");
+                var archivosEmisor = "Archivo(s) emisor=" + (valores ? valores.join(', ') : "");
                 datos += "&" + archivosAdquirente + "&" + archivosEmisor;
                 
             }
