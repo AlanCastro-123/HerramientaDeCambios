@@ -99,6 +99,51 @@
       });
 
       function generar() {
+        const params2 = new URLSearchParams(window.location.search);
+      const formData = new FormData();
+      for (const [clave, valor] of params2.entries()) {
+        switch (clave) {
+          case "Ambiente":
+            formData.append("Ambiente", valor);
+            break;
+          case "Silo(s)":
+            formData.append("Silos", valor);
+            break;
+          case "Tiempo de validación":
+            formData.append("TiempoValidacion", valor);
+            break;
+          case "Hora Inicio":
+            formData.append("HoraInicio", valor);
+            break;
+          case "Hora Fin":
+            formData.append("HoraFin", valor);
+            break;
+          case "Tipo de validación":
+            formData.append("TipoValidacion", valor);
+            break;
+          case "Archivo(s) adquirente":
+            formData.append("ArchivosAdquirente", valor);
+            break;
+          case "Archivo(s) emisor":
+            formData.append("ArchivosEmisor", valor);
+            break;
+          case "conclusion":
+            formData.append("Conclusion", valor);
+            break;
+          default:
+            break;
+        }
+      }
+      detalles = detalles.slice(0, -2);
+      formData.append("Descripciones", detalles);
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}: ${value}`);
+      }
+      fetch("https://script.google.com/macros/s/AKfycbzkp4gKwRkSkhTVKBXZ0JOiUVNrRhToJ5oC3Io77-CJyjOdzoXSLXAFTEACkIHb6th9/exec", {
+        method: "POST",
+        body: formData
+      }).then(response => response.text())
+        .then(msg => alert(msg));
         const fecha = new Date();
         const dia = String(fecha.getDate()).padStart(2, '0');
         const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // +1 porque los meses van de 0 a 11
@@ -106,7 +151,7 @@
         const fechaFormateada = `${dia}${mes}${anio}`;
         const opt = {
           margin: 0.5,
-          filename: 'reporte-validacion-'+fechaFormateada+'.pdf',
+          filename: 'reporte-validacion-' + fechaFormateada + '.pdf',
           image: { type: 'jpeg', quality: 0.98 },
           html2canvas: { scale: 2, scrollY: 0 },
           jsPDF: { unit: 'in', format: 'legal', orientation: 'portrait' },
