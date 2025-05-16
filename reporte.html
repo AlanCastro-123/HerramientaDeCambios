@@ -139,7 +139,7 @@
       for (let [key, value] of formData.entries()) {
         console.log(`${key}: ${value}`);
       }
-      fetch("https://script.google.com/macros/s/AKfycbzkp4gKwRkSkhTVKBXZ0JOiUVNrRhToJ5oC3Io77-CJyjOdzoXSLXAFTEACkIHb6th9/exec", {
+      fetch("https://script.google.com/macros/s/AKfycbwrLlVJNAQpIljcmrxuYQgQm9LkWBf19lJcOoI-4dj6J04jTcEDv3g9X2kwuEuV7kqp/exec", {
         method: "POST",
         body: formData
       }).then(response => response.text())
