@@ -142,8 +142,7 @@
       fetch("https://script.google.com/macros/s/AKfycbwrLlVJNAQpIljcmrxuYQgQm9LkWBf19lJcOoI-4dj6J04jTcEDv3g9X2kwuEuV7kqp/exec", {
         method: "POST",
         body: formData
-      }).then(response => response.text())
-        .then(msg => alert(msg));
+      });
         const fecha = new Date();
         const dia = String(fecha.getDate()).padStart(2, '0');
         const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // +1 porque los meses van de 0 a 11
