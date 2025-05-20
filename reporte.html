@@ -34,6 +34,11 @@
     .dato-label {
       font-weight: 600;
     }
+
+    .avoid-break {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
   </style>
 </head>
 
@@ -60,7 +65,7 @@
     </div>
 
     <!-- Sección 3: Conclusiones -->
-    <div class="seccion" id="seccionConclusiones">
+    <div class="seccion avoid-break" id="seccionConclusiones">
       <h4>Conclusiones</h4>
       <div id="conclusionesTexto" class="bg-light p-3 rounded"></div>
     </div>
@@ -100,49 +105,49 @@
 
       function generar() {
         const params2 = new URLSearchParams(window.location.search);
-      const formData = new FormData();
-      for (const [clave, valor] of params2.entries()) {
-        switch (clave) {
-          case "Ambiente":
-            formData.append("Ambiente", valor);
-            break;
-          case "Silo(s)":
-            formData.append("Silos", valor);
-            break;
-          case "Tiempo de validación":
-            formData.append("TiempoValidacion", valor);
-            break;
-          case "Hora Inicio":
-            formData.append("HoraInicio", valor);
-            break;
-          case "Hora Fin":
-            formData.append("HoraFin", valor);
-            break;
-          case "Tipo de validación":
-            formData.append("TipoValidacion", valor);
-            break;
-          case "Archivo(s) adquirente":
-            formData.append("ArchivosAdquirente", valor);
-            break;
-          case "Archivo(s) emisor":
-            formData.append("ArchivosEmisor", valor);
-            break;
-          case "conclusion":
-            formData.append("Conclusion", valor);
-            break;
-          default:
-            break;
+        const formData = new FormData();
+        for (const [clave, valor] of params2.entries()) {
+          switch (clave) {
+            case "Ambiente":
+              formData.append("Ambiente", valor);
+              break;
+            case "Silo(s)":
+              formData.append("Silos", valor);
+              break;
+            case "Tiempo de validación":
+              formData.append("TiempoValidacion", valor);
+              break;
+            case "Hora Inicio":
+              formData.append("HoraInicio", valor);
+              break;
+            case "Hora Fin":
+              formData.append("HoraFin", valor);
+              break;
+            case "Tipo de validación":
+              formData.append("TipoValidacion", valor);
+              break;
+            case "Archivo(s) adquirente":
+              formData.append("ArchivosAdquirente", valor);
+              break;
+            case "Archivo(s) emisor":
+              formData.append("ArchivosEmisor", valor);
+              break;
+            case "conclusion":
+              formData.append("Conclusion", valor);
+              break;
+            default:
+              break;
+          }
         }
-      }
-      detalles = detalles.slice(0, -2);
-      formData.append("Descripciones", detalles);
-      for (let [key, value] of formData.entries()) {
-        console.log(`${key}: ${value}`);
-      }
-      fetch("https://script.google.com/macros/s/AKfycbwGsAU64siHn4BubLi2h_8L870TKX3lAdftLKmzZ9Ex3iX3yPlrR5jEkPVCdGosezhv/exec", {
-        method: "POST",
-        body: formData
-      });
+        detalles = detalles.slice(0, -2);
+        formData.append("Descripciones", detalles);
+        for (let [key, value] of formData.entries()) {
+          console.log(`${key}: ${value}`);
+        }
+        fetch("https://script.google.com/macros/s/AKfycbwGsAU64siHn4BubLi2h_8L870TKX3lAdftLKmzZ9Ex3iX3yPlrR5jEkPVCdGosezhv/exec", {
+          method: "POST",
+          body: formData
+        });
         const fecha = new Date();
         const dia = String(fecha.getDate()).padStart(2, '0');
         const mes = String(fecha.getMonth() + 1).padStart(2, '0'); // +1 porque los meses van de 0 a 11
